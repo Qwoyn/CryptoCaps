@@ -23,19 +23,6 @@ The Future of Digital Collectibles - CryptoKitties, CryptoPuppies, CryptoPets, C
 > -- [Justin Poirier](https://twitter.com/tokenizedcap/status/938460753589424128)
 
 
-> 3 days of up and 19 days of down down down... And the 3 up days were right at the start. Yeah, looking real good.
->
-> Nobody wants to pay $300 for a hexadecimal string. That's LITERALLY all you’re buying.
-> All the website does is display a picture of a cat. You're paying hundreds of dollars for a picture of a cat.
-> Let that sink in.
->
-> This was a modern tulip bubble. You were buying hex strings that tied to the picture of a cat.
-> People were paying 10-20-30 ETH for a cat picture. 10 ETH was around $4000? For a cat picture. Yeah...
->
-> -- [CryptoKitties](https://www.reddit.com/r/CryptoKitties)
-
-
-
 # Awesome CryptoKitties (& CryptoCopycats)
 
 A collection about Awesome CryptoKitties (Yes, Cute Little Cartoon Cats) on the Blockchain! and CryptoCopycats - digital collectibles secured on a distributed public databases w/ crypto hashes.  Are CryptoPuppies the new CryptoKitties?  Contributions welcome.
