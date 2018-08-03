@@ -1,4 +1,4 @@
-# CryptoCaps (CC)
+# CryptoCaps (QCC)
 
 Document ideas and items on the ethereum classic blockchain using an NFT smart contract.  This smart contract is
 an easy way for users to interact with the Ethereum blockchain.  Web interface is still under construction but the contract
