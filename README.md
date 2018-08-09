@@ -18,9 +18,10 @@ Please read [CONTRIBUTING.md](https://github.com/Qwoyn/Document/contributing.md)
 
 ## Authors
 
-* **Daniel Pittman**             - [Qwoyn](https://www.qwoyn.io) - [LinkedIn](https://www.linkedin.com/in/mrpittman1/) - [Twitter](https://www.twitter.com/Qwoyn)
+* **Daniel Pittman**	Contract Dev	- [Qwoyn](https://www.qwoyn.io) - [LinkedIn](https://www.linkedin.com/in/mrpittman1/) - [Twitter](https://www.twitter.com/Qwoyn)
+* **Deuce**				Graphic Design	- [Gmail](pkepshire@gmail.com)
 
-See also the list of [contributors](https://github.com/Qwoyn/Document/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Qwoyn/CryptoCaps/contributors ) participated in this project.
 
 ## License
 
