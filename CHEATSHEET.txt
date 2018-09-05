@@ -4,6 +4,7 @@
 
 ## KittyCore Contract: [0x06012c8cf97BEaD5deAe237070F9587f8E7A266d](https://etherscan.io/address/0x06012c8cf97bead5deae237070f9587f8e7a266d#code)
 
+
 ### Dependencies/External Calls
 
 - `saleAuction()`: address of sales-auction contract aka "0xb1690C08E213a35Ed9bAb7B318DE14420FB57d8C"
