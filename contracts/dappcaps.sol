@@ -1,10 +1,14 @@
 	pragma solidity ^0.4.24;
 
 	/* 
-		Big Thanks from the Document crew to chuckbergeron for providing 
-		this template and Andrew Parker for creating the tutorial on building 
-		NFT's. Also, thanks to the ethereum team for providing the ERC721 standard. 
-		Code is Law! 
+		
+		************
+		- dAppCaps - 
+		************
+		versio 0.89
+		
+	    Daniel Pittman - Qwoyn.io
+		--------------------------
 	*/
 
 	/**
@@ -172,7 +176,7 @@
 	 * @dev The Ownable contract has an owner address, and provides basic authorization control
 	 * functions, this simplifies the implementation of "user permissions".
 	 */
-	contract Ownable {
+	contract Ownable is ReentrancyGuard{
 	  address public owner;
 
 
