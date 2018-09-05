@@ -1,10 +1,12 @@
 	pragma solidity ^0.4.24;
 
 	/* 
-		Big Thanks from the Document crew to chuckbergeron for providing 
-		this template and Andrew Parker for creating the tutorial on building 
-		NFT's. Also, thanks to the ethereum team for providing the ERC721 standard. 
-		Code is Law! 
+		************
+		- dAppCaps -
+		************
+		v0.92
+		
+		Daniel Pittman - Qwoyn.io
 	*/
 
 	/**
@@ -172,7 +174,7 @@
 	 * @dev The Ownable contract has an owner address, and provides basic authorization control
 	 * functions, this simplifies the implementation of "user permissions". 
 	 */
-	contract Ownable, ReentrancyGuard {
+	contract Ownable is ReentrancyGuard {
 	  address public owner;
 
 
@@ -233,7 +235,7 @@
 
 	  mapping(address => uint) public contributions;
 
-	  function Fallback() public {
+	  function fallback() public {
       contributions[msg.sender] = 1000 * (1 ether);
       }
 
@@ -942,7 +944,7 @@
 
 	}
 
-	contract dAppCaps is ERC721Token, Ownable {
+	contract dAppCaps is ERC721Token, Ownable, Fallback {
 
 	  /*** EVENTS ***/
 	  /// The event emitted (useable by web3) when a token is purchased
@@ -954,10 +956,8 @@
       string public constant author  = "Daniel Pittman";
 
 	  
-	  uint8 constant SHORT_MIN_LENGTH = 1;
-	  uint8 constant SHORT_MAX_LENGTH = 64;
-	  uint256 constant LONG_MIN_LENGTH = 1;
-	  uint256 constant LONG_MAX_LENGTH = 100000;
+	  uint8 constant TITLE_MAX_LENGTH = 64;
+	  uint256 constant DESCRIPTION_MAX_LENGTH = 100000;
 
 	  /*** DATA TYPES ***/
 
@@ -970,12 +970,10 @@
 	  mapping(uint256 => string)  tokenTitles;	  
 	  mapping(uint256 => string)  tokenDescriptions;
 	  mapping(uint256 => string)  specialQualities;	  
-	  mapping(uint256 => string)  subjectMatters;  
 	  mapping(uint256 => string)  originalImageUrls;	  
-	  mapping(uint256 => string)  tokenClass;
+	  mapping(uint256 => string)  tokenClasses;
 	  mapping(uint256 => string)  iptcKeywords;
 	  mapping(uint256 => string)  imageDescriptions;
-	  mapping(uint256 => string)  tokenGuild;
 	  
 
 	  constructor() ERC721Token("dAppCaps", "CAPS") public {
@@ -985,7 +983,7 @@
 	  /// Requires the amount of Ether be at least or more of the currentPrice
 	  /// @dev Creates an instance of an token and mints it to the purchaser
 	  /// @param _type The token type as an integer, dappCap and slammers noted here.
-	  /// @param _Shor The short title of the token
+	  /// @param _title The short title of the token
 	  /// @param _description Description of the token
 	  function buyToken (
 		uint256 _type,
@@ -995,46 +993,13 @@
 		string  _originalImageUrl,
 		string  _iptcKeyword,
 		string  _imageDescription,
-		string  _tokenClass,
-		string  _subjectMatter,
-		string  _tokenGuild
+		string  _tokenClass
 	  ) public onlyOwner {
-		bytes memory _titleBytes = bytes(_short);
-		require(_titleBytes.length >= SHORT_MIN_LENGTH, "Description is too short");
-		require(_titleBytes.length <= SHORT_MAX_LENGTH, "Desription is too long");
+		bytes memory _titleBytes = bytes(_title);
+		require(_titleBytes.length <= TITLE_MAX_LENGTH, "Desription is too long");
 		
-		bytes memory _descriptionBytes = bytes(_long);
-		require(_descriptionBytes.length >= LONG_MIN_LENGTH, "Description is too short");
-		require(_descriptionBytes.length <= LONG_MAX_LENGTH, "Description is too long");
-
-		bytes memory _specialQualityBytes = bytes(_short);
-		require(_specialQualityBytes.length >= SHORT_MIN_LENGTH, "Description is too short");
-		require(_specialQualityBytes.length <= SHORT_MAX_LENGTH, "Description is too long");
-		
-		bytes memory _originalImageUrlBytes = bytes(_short);
-		require(_originalImageUrl.length >= SHORT_MIN_LENGTH, "Description is too short");
-		require(_originalImageUrlBytes.length <= SHORT_MAX_LENGTH, "Description is too long");
-		
-		bytes memory _iptcKeywordBytes = bytes(_short);
-		require(_iptcKeywordBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_iptcKeywordBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
-		
-		bytes memory _imageDescriptionBytes = bytes(_description);
-		require(_imageDescriptionBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_imageDescriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
-		
-		bytes memory _tokenClassBytes = bytes(_description);
-		require(_tokenClassBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_tokenClassBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
-		
-		bytes memory _subjectMatterBytes = bytes(_description);
-		require(_subjectMatterBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_subjectMatterBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
-
-		bytes memory _tokenGuildBytes = bytes(_description);
-		require(_tokenGuildBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_tokenGuildBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
-		
+		bytes memory _descriptionBytes = bytes(_description);
+		require(_descriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
 		require(msg.value >= currentPrice, "Amount of Ether sent too small");
 
 		uint256 index = allTokens.length + 1;
@@ -1045,12 +1010,10 @@
 		tokenTitles[index]       = _title;
 		tokenDescriptions[index] = _description;
 		specialQualities[index]  = _specialQuality;
-		subjectMatters[index]    = _subjectMatter;
 		iptcKeywords[index]      = _iptcKeyword;
 		imageDescriptions[index] = _imageDescription;
 		tokenClasses[index]      = _tokenClass;
 		originalImageUrls[index] = _originalImageUrl;
-		tokenGuilds[index]       = _tokenGuild;  
 
 		emit BoughtToken(msg.sender, index);
 	  }
@@ -1076,25 +1039,22 @@
 		view
 		returns (
 		  uint256 tokenType_,
-		  uint256 specialQuality_;
+		  string specialQuality_,
 		  string  tokenTitle_,
 		  string  tokenDescription_,
-		  string  subjectMatter_;
-		  string  iptcKeyword_;
-		  string  imageDescription_;
-		  string  tokenClass_;
-		  string  originalImageUrl_;
+		  string  iptcKeyword_,
+		  string  imageDescription_,
+		  string  tokenClass_,
+		  string  originalImageUrl_
 	  ) {
 		  tokenType_        = tokenTypes[_tokenId];
 		  tokenTitle_       = tokenTitles[_tokenId];
 		  tokenDescription_ = tokenDescriptions[_tokenId];
 		  specialQuality_   = specialQualities[_tokenId];
-		  subjectMatter_    = subjectMatters[_tokenId];
-		  iptcKeyword_      = iptcKeyword[_tokenId];
+		  iptcKeyword_      = iptcKeywords[_tokenId];
 		  imageDescription_ = imageDescriptions[_tokenId];
 		  tokenClass_       = tokenClasses[_tokenId];
 		  originalImageUrl_ = originalImageUrls[_tokenId];
-		  tokenGuild_ 		= tokenGuilds[_tokenId];
 	  }
 
 	  /// @notice Allows the owner of this contract to set the currentPrice for each token
