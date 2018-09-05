@@ -942,7 +942,7 @@
 
 	}
 
-	contract Document is ERC721Token, Ownable {
+	contract dAppCaps is ERC721Token, Ownable {
 
 	  /*** EVENTS ***/
 	  /// The event emitted (useable by web3) when a token is purchased
@@ -975,9 +975,7 @@
 	  mapping(uint256 => string)  tokenClass;
 	  mapping(uint256 => string)  iptcKeywords;
 	  mapping(uint256 => string)  imageDescriptions;
-	  
-	  /// The description of the token
-	  mapping(uint256 => string) tokenClass;
+	  mapping(uint256 => string)  tokenGuild;
 	  
 
 	  constructor() ERC721Token("dAppCaps", "CAPS") public {
@@ -999,6 +997,7 @@
 		string  _imageDescription,
 		string  _tokenClass,
 		string  _subjectMatter,
+		string  _tokenGuild
 	  ) public onlyOwner {
 		bytes memory _titleBytes = bytes(_short);
 		require(_titleBytes.length >= SHORT_MIN_LENGTH, "Description is too short");
@@ -1028,6 +1027,14 @@
 		require(_tokenClassBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
 		require(_tokenClassBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
 		
+		bytes memory _subjectMatterBytes = bytes(_description);
+		require(_subjectMatterBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
+		require(_subjectMatterBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
+
+		bytes memory _tokenGuildBytes = bytes(_description);
+		require(_tokenGuildBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
+		require(_tokenGuildBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
+		
 		require(msg.value >= currentPrice, "Amount of Ether sent too small");
 
 		uint256 index = allTokens.length + 1;
@@ -1043,6 +1050,7 @@
 		imageDescriptions[index] = _imageDescription;
 		tokenClasses[index]      = _tokenClass;
 		originalImageUrls[index] = _originalImageUrl;
+		tokenGuilds[index]       = _tokenGuild;  
 
 		emit BoughtToken(msg.sender, index);
 	  }
@@ -1086,7 +1094,7 @@
 		  imageDescription_ = imageDescriptions[_tokenId];
 		  tokenClass_       = tokenClasses[_tokenId];
 		  originalImageUrl_ = originalImageUrls[_tokenId];
-		  		  
+		  tokenGuild_ 		= tokenGuilds[_tokenId];
 	  }
 
 	  /// @notice Allows the owner of this contract to set the currentPrice for each token
