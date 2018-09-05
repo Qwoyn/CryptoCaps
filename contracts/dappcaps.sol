@@ -1,14 +1,10 @@
 	pragma solidity ^0.4.24;
 
 	/* 
-		
-		************
-		- dAppCaps - 
-		************
-		versio 0.89
-		
-	    Daniel Pittman - Qwoyn.io
-		--------------------------
+		Big Thanks from the Document crew to chuckbergeron for providing 
+		this template and Andrew Parker for creating the tutorial on building 
+		NFT's. Also, thanks to the ethereum team for providing the ERC721 standard. 
+		Code is Law! 
 	*/
 
 	/**
@@ -174,9 +170,9 @@
 	/**
 	 * @title Ownable
 	 * @dev The Ownable contract has an owner address, and provides basic authorization control
-	 * functions, this simplifies the implementation of "user permissions".
+	 * functions, this simplifies the implementation of "user permissions". 
 	 */
-	contract Ownable is ReentrancyGuard{
+	contract Ownable, ReentrancyGuard {
 	  address public owner;
 
 
@@ -961,7 +957,7 @@
 	  uint8 constant SHORT_MIN_LENGTH = 1;
 	  uint8 constant SHORT_MAX_LENGTH = 64;
 	  uint256 constant LONG_MIN_LENGTH = 1;
-	  uint256 constant LONG_MAX_LENGTH = 10000;
+	  uint256 constant LONG_MAX_LENGTH = 100000;
 
 	  /*** DATA TYPES ***/
 
@@ -969,30 +965,19 @@
 	  /// @dev If you'd like a different price for each token type, you will
 	  ///   need to use a mapping like: `mapping(uint256 => uint256) tokenTypePrices;`
 	  uint256 currentPrice = 0;
-
-	  /// The token type 
+	  
 	  mapping(uint256 => uint256) tokenTypes;
-
-	  /// The title of the token
-	  mapping(uint256 => string) tokenTitles;	  
+	  mapping(uint256 => string)  tokenTitles;	  
+	  mapping(uint256 => string)  tokenDescriptions;
+	  mapping(uint256 => string)  specialQualities;	  
+	  mapping(uint256 => string)  subjectMatters;  
+	  mapping(uint256 => string)  originalImageUrls;	  
+	  mapping(uint256 => string)  tokenClass;
+	  mapping(uint256 => string)  iptcKeywords;
+	  mapping(uint256 => string)  imageDescriptions;
+	  
 	  /// The description of the token
-	  mapping(uint256 => string) tokenDescription;
-	  /// Extra Attributes of the token;
-	  mapping (uint256 => string) attributeOne;
-	  	  /// Extra Attributes of the token;
-	  mapping (uint256 => string) attributeTwo;
-	  	  /// Extra Attributes of the token;
-	  mapping (uint256 => string) attributeThree;
-	  	  /// Extra Attributes of the token;
-	  mapping (uint256 => string) attributeFour;
-	  	  /// Extra Attributes of the token;
-	  mapping (uint256 => string) attributeFive;
-	  	  /// Extra Attributes of the token;
-	  mapping (uint256 => string) attributeSix;
-	  	  /// Extra Attributes of the token;
-	  mapping (uint256 => string) attributeSeven;
-	  	  /// Extra Attributes of the token;
-	  mapping (uint256 => string) attributeEight;
+	  mapping(uint256 => string) tokenClass;
 	  
 
 	  constructor() ERC721Token("dAppCaps", "CAPS") public {
@@ -1006,16 +991,14 @@
 	  /// @param _description Description of the token
 	  function buyToken (
 		uint256 _type,
-		string _short,
-		string _long,
-		string _attributeOne,
-		string _attributeTwo,
-		string _attributeThree,
-		string _attributeFour,
-		string _attributeFive,
-		string _attributeSix,
-		string _attributeSeven,
-		string _attributeEight,
+		string  _title,
+		string  _description,
+		string  _specialQuality,
+		string  _originalImageUrl,
+		string  _iptcKeyword,
+		string  _imageDescription,
+		string  _tokenClass,
+		string  _subjectMatter,
 	  ) public onlyOwner {
 		bytes memory _titleBytes = bytes(_short);
 		require(_titleBytes.length >= SHORT_MIN_LENGTH, "Description is too short");
@@ -1025,37 +1008,25 @@
 		require(_descriptionBytes.length >= LONG_MIN_LENGTH, "Description is too short");
 		require(_descriptionBytes.length <= LONG_MAX_LENGTH, "Description is too long");
 
-		bytes memory _attributeOneBytes = bytes(_short);
-		require(_attributeOneBytes.length >= SHORT_MIN_LENGTH, "Description is too short");
-		require(_attributeOneBytes.length <= SHORT_MAX_LENGTH, "Description is too long");
+		bytes memory _specialQualityBytes = bytes(_short);
+		require(_specialQualityBytes.length >= SHORT_MIN_LENGTH, "Description is too short");
+		require(_specialQualityBytes.length <= SHORT_MAX_LENGTH, "Description is too long");
 		
-		bytes memory _attributeTwoBytes = bytes(_short);
-		require(_attributeTwoBytes.length >= SHORT_MIN_LENGTH, "Description is too short");
-		require(_attributeTwoBytes.length <= SHORT_MAX_LENGTH, "Description is too long");
+		bytes memory _originalImageUrlBytes = bytes(_short);
+		require(_originalImageUrl.length >= SHORT_MIN_LENGTH, "Description is too short");
+		require(_originalImageUrlBytes.length <= SHORT_MAX_LENGTH, "Description is too long");
 		
-		bytes memory _attributeThreeBytes = bytes(_short);
-		require(_attributeThreeBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_descriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
+		bytes memory _iptcKeywordBytes = bytes(_short);
+		require(_iptcKeywordBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
+		require(_iptcKeywordBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
 		
-		bytes memory _descriptionBytes = bytes(_description);
-		require(_descriptionBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_descriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
+		bytes memory _imageDescriptionBytes = bytes(_description);
+		require(_imageDescriptionBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
+		require(_imageDescriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
 		
-		bytes memory _descriptionBytes = bytes(_description);
-		require(_descriptionBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_descriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
-		
-		bytes memory _descriptionBytes = bytes(_description);
-		require(_descriptionBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_descriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
-		
-		bytes memory _descriptionBytes = bytes(_description);
-		require(_descriptionBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_descriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
-		
-		bytes memory _descriptionBytes = bytes(_description);
-		require(_descriptionBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
-		require(_descriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
+		bytes memory _tokenClassBytes = bytes(_description);
+		require(_tokenClassBytes.length >= DESCRIPTION_MIN_LENGTH, "Description is too short");
+		require(_tokenClassBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
 		
 		require(msg.value >= currentPrice, "Amount of Ether sent too small");
 
@@ -1063,18 +1034,15 @@
 
 		_mint(msg.sender, index);
 
-		tokenTypes[index] = _type;
-		tokenTitles[index] = _title;
-		tokenDescriptionOne[index] = _description;
-		tokenAttributeTwo[index] = _attributeOne;
-		tokenAttributeThree[index] = _attributeOne;
-		tokenAttributeFour[index] = _attributeOne;
-		tokenAttributeFive[index] = _attributeOne;
-		tokenAttributeSix[index] = _attributeOne;
-		tokenAttributeSeven[index] = _attributeOne;
-		tokenAttributeEight[index] = _attributeOne;
-		tokenAttribute[index] = _attributeOne;
-		
+		tokenTypes[index]        = _type;
+		tokenTitles[index]       = _title;
+		tokenDescriptions[index] = _description;
+		specialQualities[index]  = _specialQuality;
+		subjectMatters[index]    = _subjectMatter;
+		iptcKeywords[index]      = _iptcKeyword;
+		imageDescriptions[index] = _imageDescription;
+		tokenClasses[index]      = _tokenClass;
+		originalImageUrls[index] = _originalImageUrl;
 
 		emit BoughtToken(msg.sender, index);
 	  }
@@ -1112,7 +1080,7 @@
 		  tokenType_        = tokenTypes[_tokenId];
 		  tokenTitle_       = tokenTitles[_tokenId];
 		  tokenDescription_ = tokenDescriptions[_tokenId];
-		  specialQuality_   = specialQualitys[_tokenId];
+		  specialQuality_   = specialQualities[_tokenId];
 		  subjectMatter_    = subjectMatters[_tokenId];
 		  iptcKeyword_      = iptcKeyword[_tokenId];
 		  imageDescription_ = imageDescriptions[_tokenId];
