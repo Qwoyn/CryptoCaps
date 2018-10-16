@@ -1,0 +1,4 @@
+token abi
+ethereum:0x72969193e7481b4B15B80E7e6a280FD5e6764fd3?gas=100000&function=safeTransferFrom({from: address}, {to: address}, uint256 1)
+
+24.25%
