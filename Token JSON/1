@@ -13,6 +13,12 @@
       "display_type": "number", 
       "trait_type": "Generation", 
       "value": 1
+    },
+	{
+      "max_value": "50"	
+      "display_type": "number", 
+      "trait_type": "Rare", 
+      "value": 1
     }
   ],
   "name": "8 Ball"  

@@ -44,12 +44,18 @@
       "value": 22.8
 	  "max_value": 100
 	},
-	    {
+	{
       "display_type": "number", 
       "trait_type": "CBD", 
       "value": 0.04
 	  "max_value": 100
-	}
+	},
+	{
+      "max_value": "50"	
+      "display_type": "number", 
+      "trait_type": "Rare", 
+      "value": 1
+    }
 	
   ], 
   "name": "Silver Haze, Sativa"
