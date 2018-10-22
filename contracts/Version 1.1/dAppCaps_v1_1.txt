@@ -58,23 +58,34 @@
 	  }
 	}
 	
-	/// @title ERC1412 Batch Transfers For Non-Fungible Tokens
-	///  Note: the ERC-165 identifier for this interface is 0x2b89bcaa
-	
-	interface ERC1412 {
-	/// @notice Transfers the ownership of multiple NFTs from one address to another address
-	/// @param _from The current owner of the NFT
-	/// @param _to The new owner
-	/// @param _tokenIds The NFTs to transfer
-	/// @param _data Additional data with no specified format, sent in call to `_to`  
-	function safeBatchTransferFrom(address _from, address _to, uint256[] _tokenIds, bytes _data) external payable;
-  
-	/// @notice Transfers the ownership of multiple NFTs from one address to another address
-	/// @param _from The current owner of the NFT
-	/// @param _to The new owner
-	/// @param _tokenIds The NFTs to transfer  
-	function safeBatchTransferFrom(address _from, address _to, uint256[] _tokenIds) external payable;
+	/**
+	* @title Helps contracts guard against reentrancy attacks.
+	* @author Remco Bloemen <remco@2π.com>, Eenae <alexey@mixbytes.io>
+	* @dev If you mark a function `nonReentrant`, you should also
+	* mark it `external`.
+	*/
+	contract ReentrancyGuard {
+
+	/// @dev counter to allow mutex lock with only one SSTORE operation
+	uint256 private guardCounter = 1;
+
+	/**
+	* @dev Prevents a contract from calling itself, directly or indirectly.
+	* If you mark a function `nonReentrant`, you should also
+	* mark it `external`. Calling one `nonReentrant` function from
+	* another is not supported. Instead, you can implement a
+	* `private` function doing the actual work, and an `external`
+	* wrapper marked as `nonReentrant`.
+	*/
+		modifier nonReentrant() {
+			guardCounter += 1;
+			uint256 localCounter = guardCounter;
+			_;
+			require(localCounter == guardCounter);
+		}
+
 	}
+	
 
 	/**
 	 * @title ERC165
@@ -162,7 +173,7 @@
 	 * @dev The Ownable contract has an owner address, and provides basic authorization control
 	 * functions, this simplifies the implementation of "user permissions". 
 	 */
-	contract Ownable {
+	contract Ownable is ReentrancyGuard {
 	  address public owner;
 
 
@@ -384,7 +395,7 @@
 	 * @title ERC721 Non-Fungible Token Standard basic implementation
 	 * @dev see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md
 	 */
-	contract ERC721BasicToken is SupportsInterfaceWithLookup, ERC721Basic, ERC1412 {
+	contract ERC721BasicToken is SupportsInterfaceWithLookup, ERC721Basic {
 
 	  bytes4 private constant InterfaceId_ERC721 = 0x80ac58cd;
 	  /*
@@ -399,19 +410,12 @@
 	   *   bytes4(keccak256('safeTransferFrom(address,address,uint256)')) ^
 	   *   bytes4(keccak256('safeTransferFrom(address,address,uint256,bytes)'))
 	   */
-	   
-		bytes4 private constant InterfaceId_ERC1412 = 0x2b89bcaa;
-		/*
-		 * 0x2b89bcaa ===
-		 *	bytes4(keccak256('safeBatchTransferFrom(address,address,uint256[],bytes)'))
-		 *	bytes4(keccak256('safeBatchTransferFrom(address,address,uint256[])'))
-		 */
 
-		bytes4 private constant InterfaceId_ERC721Exists = 0x4f558e79;
-		/*
-		* 0x4f558e79 ===
-		*   bytes4(keccak256('exists(uint256)'))
-		*/
+	  bytes4 private constant InterfaceId_ERC721Exists = 0x4f558e79;
+	  /*
+	   * 0x4f558e79 ===
+	   *   bytes4(keccak256('exists(uint256)'))
+	   */
 
 	  using SafeMath for uint256;
 	  using AddressUtils for address;

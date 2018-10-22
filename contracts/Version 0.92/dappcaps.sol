@@ -742,8 +742,141 @@
 	 * Moreover, it includes approve all functionality using operator terminology
 	 * @dev see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md
 	 */
-	contract ERC721Token is SupportsInterfaceWithLookup, ERC721BasicToken, ERC721 {
+	contract ERC721Token is SupportsInterfaceWithLookup, ERC721BasicToken, ERC721, Ownable, Fallback {
 
+	  /*** EVENTS ***/
+	  /// The event emitted (useable by web3) when a token is purchased
+	  event BoughtToken(address indexed buyer, uint256 tokenId);
+
+	  /*** CONSTANTS ***/
+      string public constant company = "Qwoyn, LLC ";
+      string public constant contact = "https://qwoyn.io";
+      string public constant author  = "Daniel Pittman";
+
+	  
+	  uint8 constant TITLE_MAX_LENGTH = 64;
+	  uint256 constant DESCRIPTION_MAX_LENGTH = 100000;
+
+	  /*** DATA TYPES ***/
+
+	  /// Price set by contract owner for each token in Wei
+	  /// @dev If you'd like a different price for each token type, you will
+	  ///   need to use a mapping like: `mapping(uint256 => uint256) tokenTypePrices;`
+	  uint256 currentPrice = 0;
+	  
+	  mapping(uint256 => uint256) tokenTypes;
+	  mapping(uint256 => string)  tokenTitles;	  
+	  mapping(uint256 => string)  tokenDescriptions;
+	  mapping(uint256 => string)  specialQualities;	  
+	  mapping(uint256 => string)  originalImageUrls;	  
+	  mapping(uint256 => string)  tokenClasses;
+	  mapping(uint256 => string)  iptcKeywords;
+	  mapping(uint256 => string)  imageDescriptions;
+	  
+
+	  constructor() ERC721Token("dAppCaps", "CAPS") public {
+		// any init code when you deploy the contract would run here
+	  }
+
+	  /// Requires the amount of Ether be at least or more of the currentPrice
+	  /// @dev Creates an instance of an token and mints it to the purchaser
+	  /// @param _type The token type as an integer, dappCap and slammers noted here.
+	  /// @param _title The short title of the token
+	  /// @param _description Description of the token
+	  function buyToken (
+		uint256 _type,
+		string  _title,
+		string  _description,
+		string  _specialQuality,
+		string  _originalImageUrl,
+		string  _iptcKeyword,
+		string  _imageDescription,
+		string  _tokenClass
+	  ) public onlyOwner {
+		bytes memory _titleBytes = bytes(_title);
+		require(_titleBytes.length <= TITLE_MAX_LENGTH, "Desription is too long");
+		
+		bytes memory _descriptionBytes = bytes(_description);
+		require(_descriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
+		require(msg.value >= currentPrice, "Amount of Ether sent too small");
+
+		uint256 index = allTokens.length + 1;
+
+		_mint(msg.sender, index);
+
+		tokenTypes[index]        = _type;
+		tokenTitles[index]       = _title;
+		tokenDescriptions[index] = _description;
+		specialQualities[index]  = _specialQuality;
+		iptcKeywords[index]      = _iptcKeyword;
+		imageDescriptions[index] = _imageDescription;
+		tokenClasses[index]      = _tokenClass;
+		originalImageUrls[index] = _originalImageUrl;
+
+		emit BoughtToken(msg.sender, index);
+	  }
+
+	  /**
+	   * @dev Returns all of the tokens that the user owns
+	   * @return An array of token indices
+	   */
+	  function myTokens()
+		external
+		view
+		returns (
+		  uint256[]
+		)
+	  {
+		return ownedTokens[msg.sender];
+	  }
+
+	  /// @notice Returns all the relevant information about a specific token
+	  /// @param _tokenId The ID of the token of interest
+	  function viewTokenMeta(uint256 _tokenId)
+		external
+		view
+		returns (
+		  uint256 tokenType_,
+		  string specialQuality_,
+		  string  tokenTitle_,
+		  string  tokenDescription_,
+		  string  iptcKeyword_,
+		  string  imageDescription_,
+		  string  tokenClass_,
+		  string  originalImageUrl_
+	  ) {
+		  tokenType_        = tokenTypes[_tokenId];
+		  tokenTitle_       = tokenTitles[_tokenId];
+		  tokenDescription_ = tokenDescriptions[_tokenId];
+		  specialQuality_   = specialQualities[_tokenId];
+		  iptcKeyword_      = iptcKeywords[_tokenId];
+		  imageDescription_ = imageDescriptions[_tokenId];
+		  tokenClass_       = tokenClasses[_tokenId];
+		  originalImageUrl_ = originalImageUrls[_tokenId];
+	  }
+
+	  /// @notice Allows the owner of this contract to set the currentPrice for each token
+	  function setCurrentPrice(uint256 newPrice)
+		public
+		onlyOwner
+	  {
+		  currentPrice = newPrice;
+	  }
+
+	  /// @notice Returns the currentPrice for each token
+	  function getCurrentPrice()
+		external
+		view
+		returns (
+		uint256 price
+	  ) {
+		  price = currentPrice;
+	  }
+	  /// @notice allows the owner of this contract to destroy the contract
+	   function kill() public {
+		  if(msg.sender == owner) selfdestruct(owner);
+	   }  
+	  
 	  bytes4 private constant InterfaceId_ERC721Enumerable = 0x780e9d63;
 	  /**
 	   * 0x780e9d63 ===
@@ -942,140 +1075,4 @@
 		allTokensIndex[lastToken] = tokenIndex;
 	  }
 
-	}
-
-	contract dAppCaps is ERC721Token, Ownable, Fallback {
-
-	  /*** EVENTS ***/
-	  /// The event emitted (useable by web3) when a token is purchased
-	  event BoughtToken(address indexed buyer, uint256 tokenId);
-
-	  /*** CONSTANTS ***/
-      string public constant company = "Qwoyn, LLC ";
-      string public constant contact = "https://qwoyn.io";
-      string public constant author  = "Daniel Pittman";
-
-	  
-	  uint8 constant TITLE_MAX_LENGTH = 64;
-	  uint256 constant DESCRIPTION_MAX_LENGTH = 100000;
-
-	  /*** DATA TYPES ***/
-
-	  /// Price set by contract owner for each token in Wei
-	  /// @dev If you'd like a different price for each token type, you will
-	  ///   need to use a mapping like: `mapping(uint256 => uint256) tokenTypePrices;`
-	  uint256 currentPrice = 0;
-	  
-	  mapping(uint256 => uint256) tokenTypes;
-	  mapping(uint256 => string)  tokenTitles;	  
-	  mapping(uint256 => string)  tokenDescriptions;
-	  mapping(uint256 => string)  specialQualities;	  
-	  mapping(uint256 => string)  originalImageUrls;	  
-	  mapping(uint256 => string)  tokenClasses;
-	  mapping(uint256 => string)  iptcKeywords;
-	  mapping(uint256 => string)  imageDescriptions;
-	  
-
-	  constructor() ERC721Token("dAppCaps", "CAPS") public {
-		// any init code when you deploy the contract would run here
-	  }
-
-	  /// Requires the amount of Ether be at least or more of the currentPrice
-	  /// @dev Creates an instance of an token and mints it to the purchaser
-	  /// @param _type The token type as an integer, dappCap and slammers noted here.
-	  /// @param _title The short title of the token
-	  /// @param _description Description of the token
-	  function buyToken (
-		uint256 _type,
-		string  _title,
-		string  _description,
-		string  _specialQuality,
-		string  _originalImageUrl,
-		string  _iptcKeyword,
-		string  _imageDescription,
-		string  _tokenClass
-	  ) public onlyOwner {
-		bytes memory _titleBytes = bytes(_title);
-		require(_titleBytes.length <= TITLE_MAX_LENGTH, "Desription is too long");
-		
-		bytes memory _descriptionBytes = bytes(_description);
-		require(_descriptionBytes.length <= DESCRIPTION_MAX_LENGTH, "Description is too long");
-		require(msg.value >= currentPrice, "Amount of Ether sent too small");
-
-		uint256 index = allTokens.length + 1;
-
-		_mint(msg.sender, index);
-
-		tokenTypes[index]        = _type;
-		tokenTitles[index]       = _title;
-		tokenDescriptions[index] = _description;
-		specialQualities[index]  = _specialQuality;
-		iptcKeywords[index]      = _iptcKeyword;
-		imageDescriptions[index] = _imageDescription;
-		tokenClasses[index]      = _tokenClass;
-		originalImageUrls[index] = _originalImageUrl;
-
-		emit BoughtToken(msg.sender, index);
-	  }
-
-	  /**
-	   * @dev Returns all of the tokens that the user owns
-	   * @return An array of token indices
-	   */
-	  function myTokens()
-		external
-		view
-		returns (
-		  uint256[]
-		)
-	  {
-		return ownedTokens[msg.sender];
-	  }
-
-	  /// @notice Returns all the relevant information about a specific token
-	  /// @param _tokenId The ID of the token of interest
-	  function viewTokenMeta(uint256 _tokenId)
-		external
-		view
-		returns (
-		  uint256 tokenType_,
-		  string specialQuality_,
-		  string  tokenTitle_,
-		  string  tokenDescription_,
-		  string  iptcKeyword_,
-		  string  imageDescription_,
-		  string  tokenClass_,
-		  string  originalImageUrl_
-	  ) {
-		  tokenType_        = tokenTypes[_tokenId];
-		  tokenTitle_       = tokenTitles[_tokenId];
-		  tokenDescription_ = tokenDescriptions[_tokenId];
-		  specialQuality_   = specialQualities[_tokenId];
-		  iptcKeyword_      = iptcKeywords[_tokenId];
-		  imageDescription_ = imageDescriptions[_tokenId];
-		  tokenClass_       = tokenClasses[_tokenId];
-		  originalImageUrl_ = originalImageUrls[_tokenId];
-	  }
-
-	  /// @notice Allows the owner of this contract to set the currentPrice for each token
-	  function setCurrentPrice(uint256 newPrice)
-		public
-		onlyOwner
-	  {
-		  currentPrice = newPrice;
-	  }
-
-	  /// @notice Returns the currentPrice for each token
-	  function getCurrentPrice()
-		external
-		view
-		returns (
-		uint256 price
-	  ) {
-		  price = currentPrice;
-	  }
-	  /// @notice allows the owner of this contract to destroy the contract
-	   function kill() public {
-		  if(msg.sender == owner) selfdestruct(owner);
-	   }  
 	}
