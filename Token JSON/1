@@ -14,7 +14,8 @@
       "trait_type": "Generation", 
       "value": 1
     }
-  ], 
+  ],
+  "name": "8 Ball"  
   "description": "Did you know that I have a physical copy somewhere\n visit qwoyn.io to find out more.", 
   "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/1", 
   "image": "https://qwoyn.io/wp-content/uploads/2018/10/8Ball_1.png", 
