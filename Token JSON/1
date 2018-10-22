@@ -1,0 +1,31 @@
+{
+  "attributes": [
+    {
+      "trait_type": "level", 
+      "value": 1
+    }, 
+    {
+      "max_value": 100, 
+      "trait_type": "stamina", 
+      "value": 50
+    }, 
+    {
+      "trait_type": "rarity", 
+      "value": "50"
+    }, 
+    {
+      "display_type": "boost_number", 
+      "trait_type": "magic", 
+      "value": 10
+    }, 
+    {
+      "display_type": "number", 
+      "trait_type": "generation", 
+      "value": 1
+    }
+  ], 
+  "description": "Did you know that I have a physical copy somewhere\n visit qwoyn.io to find out more.", 
+  "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/1", 
+  "image": "https://qwoyn.io/wp-content/uploads/2018/10/8Ball_1.png", 
+  "organization": "qwoyn.io"
+}
