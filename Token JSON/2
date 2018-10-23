@@ -51,14 +51,14 @@
 	  "max_value": 100
 	},
 	{
+	  "display_type": "number", 
       "max_value": "50",	
-      "display_type": "number", 
       "trait_type": "Rare", 
       "value": 1
     }
   ],
   "name": "Grape Ape, Indica",
-  "description": "Propagated by Apothecary Genetics and Barney’s Farm, is a mostly indica strain that crosses Mendocino Purps, Skunk, and Afghani.\nNamed for its distinct grape-like smell, this indica is known for providing carefree relaxation that can help soothe pain, stress, and anxiety. Its dense, compact buds are wreathed in deep purple leaves which darken as this indica reaches full maturation following its 7 to 8 week flowering time.", 
+  "description": "Propagated by Apothecary Genetics and Barney’s Farm, is a mostly indica strain that crosses Mendocino Purps, Skunk, and Afghani. Named for its distinct grape-like smell, this indica is known for providing carefree relaxation that can help soothe pain, stress, and anxiety. Its dense, compact buds are wreathed in deep purple leaves which darken as this indica reaches full maturation following its 7 to 8 week flowering time.", 
   "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/2", 
   "image": "https://qwoyn.io/wp-content/uploads/2018/10/grape_ape_2.png", 
   "organization": "Qwoyn"
