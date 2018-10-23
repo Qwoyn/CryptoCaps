@@ -5,11 +5,6 @@
       "value": "8 Ball"
     }, 
     {
-      "display_type": "boost_number", 
-      "trait_type": "Speed", 
-      "value": 23.5
-    }, 
-    {
       "display_type": "number", 
       "trait_type": "Generation", 
       "value": 1
