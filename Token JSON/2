@@ -52,7 +52,7 @@
 },
 {
 "display_type": "number",
-"max_value": 50,
+"max_value": 10,
 "trait_type": "Rare", 
 "value": 1
 }

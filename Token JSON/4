@@ -3,21 +3,21 @@
 {
 "trait_type": "Style",
 "value": "Logo Cap"
-}, 
+},
 {
 "display_type": "boost_number",
 "trait_type": "Cred",
 "value": 100
-}, 
+},
 {
 "display_type": "number",
-"max_value": "50",
-"trait_type": "Rare",
+"max_value": "25",
+"trait_type": "Exclusive",
 "value": 1
 }
 ],
-"name": "Blockchain Gaming Logo",  
-"description": "For my good friends at blockchaingaming.com and DCTRL in Vancouver, BC", 
+"name": "Blockchain Gaming Logo",
+"description": "For my good friends at blockchaingaming.com and DCTRL in Vancouver, BC",
 "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/4",
 "image": "https://qwoyn.io/wp-content/uploads/2018/10/qwoyn_io__bcglogo_front_DCS1.png", 
 "background_color": "000000",
