@@ -10,8 +10,8 @@
       "value": 1
     },
 	{
-      "max_value": "50"	
-      "display_type": "number", 
+	  "display_type": "number",
+      "max_value": 50,
       "trait_type": "Rare", 
       "value": 1
     }
