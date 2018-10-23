@@ -9,19 +9,19 @@
       "value": "Sativa"
     }, 
     {
-	  "max_value": 100	
+	  "max_value": 100,	
       "display_type": "boost_percentage", 
       "trait_type": "Euphoric", 
       "value": 100
     }, 
 	{
-	  "max_value": 100	
+	  "max_value": 100,	
       "display_type": "boost_percentage", 
       "trait_type": "Happy", 
       "value": 80
     },
 	{
-	  "max_value": 100	
+	  "max_value": 100,	
       "display_type": "boost_percentage", 
       "trait_type": "Uplifted", 
       "value": 70
