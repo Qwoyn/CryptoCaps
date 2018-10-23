@@ -1,65 +1,65 @@
 {
-  "attributes": [
-    {
-      "trait_type": "Taste", 
-      "value": "Earthy Citrus Woody"
-    }, 
-    {
-      "trait_type": "Strain", 
-      "value": "Sativa"
-    }, 
-    {
-	  "display_type": "boost_percentage",
-	  "max_value": 100,	  
-      "trait_type": "Euphoric", 
-      "value": 100
-    }, 
-	{
-	  "display_type": "boost_percentage",
-	  "max_value": 100,	 
-      "trait_type": "Happy", 
-      "value": 80
-    },
-	{
-	  "display_type": "boost_percentage",
-	  "max_value": 100,
-      "trait_type": "Uplifted", 
-      "value": 70
-    },
-	{
-	  "display_type": "boost_percentage", 
-	  "max_value": 100,
-      "trait_type": "Relaxed", 
-      "value": 70
-    },
-	{
-	  "display_type": "boost_percentage", 
-	  "max_value": 100,	
-      "trait_type": "Energetic", 
-      "value": 63
-    },	
-    {
-      "display_type": "number", 
-      "trait_type": "THC", 
-      "value": 22.8,
-	  "max_value": 100
-	},
-	{
-      "display_type": "number", 
-      "trait_type": "CBD", 
-      "value": 0.04,
-	  "max_value": 100
-	},
-	{
-      "max_value": "50",
-      "display_type": "number", 
-      "trait_type": "Rare", 
-      "value": 1
-    }	
-  ], 
-  "name": "Silver Haze, Sativa",
-  "description": "The first seed strain to deliver the full-strength Haze experience in a fatter, faster, more compact form. Crossing Haze with a non-dominant indica Northern Lights, Silver Haze maintains strong but clear-headed sativa effects. Introduced by Sensi Seeds, the Silver Haze gets its name from the massive amount of shiny THC glands covering the buds.",
-  "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/3", 
-  "image": "https://qwoyn.io/wp-content/uploads/2018/10/SJ420six_S.png", 
-  "organization": "Qwoyn"
+"attributes": [
+{
+"trait_type": "Taste", 
+"value": "Earthy Citrus Woody"
+}, 
+{
+"trait_type": "Strain", 
+"value": "Sativa"
+}, 
+{
+"display_type": "boost_percentage", 
+"max_value": 100,	  
+"trait_type": "Euphoric", 
+"value": 100
+}, 
+{
+"display_type": "boost_percentage",
+"max_value": 100,	 
+"trait_type": "Happy", 
+"value": 80
+},
+{
+"display_type": "boost_percentage", 
+"max_value": 100,
+"trait_type": "Uplifted", 
+"value": 70
+},
+{
+"display_type": "boost_percentage", 
+"max_value": 100,
+"trait_type": "Relaxed", 
+"value": 70
+},
+{
+"display_type": "boost_percentage", 
+"max_value": 100,	
+"trait_type": "Energetic", 
+"value": 63
+},	
+{
+"display_type": "number", 
+"trait_type": "THC", 
+"value": 22.8,
+"max_value": 100
+},
+{
+"display_type": "number", 
+"trait_type": "CBD", 
+"value": 0.04,
+"max_value": 100
+},
+{
+"max_value": "50",
+"display_type": "number", 
+"trait_type": "Rare", 
+"value": 1
+}	
+], 
+"name": "Silver Haze, Sativa",
+"description": "The first seed strain to deliver the full-strength Haze experience in a fatter, faster, more compact form. Crossing Haze with a non-dominant indica Northern Lights, Silver Haze maintains strong but clear-headed sativa effects. Introduced by Sensi Seeds, the Silver Haze gets its name from the massive amount of shiny THC glands covering the buds.",
+"externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/3", 
+"image": "https://qwoyn.io/wp-content/uploads/2018/10/SJ420six_S.png", 
+"organization": "Qwoyn"
 }
