@@ -2,13 +2,8 @@
   "attributes": [
     {
       "trait_type": "Magic", 
-      "value": "8 Ball"
+      "value": "Level 8"
     }, 
-    {
-      "display_type": "number", 
-      "trait_type": "Generation", 
-      "value": 1
-    },
 	{
 	  "display_type": "number",
       "max_value": 50,
