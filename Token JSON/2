@@ -44,7 +44,7 @@
       "value": 23.5
 	  "max_value": 100
 	},
-	    {
+	{
       "display_type": "number", 
       "trait_type": "CBD", 
       "value": 0.3
