@@ -4,7 +4,7 @@
 		************
 		- dAppCaps -
 		************
-		v1.7
+		v1.75
 		
 		Daniel Pittman - Qwoyn.io
 		
@@ -237,32 +237,9 @@
 	
 	contract Fallback is Ownable {
 
-	  mapping(address => uint) public contributions;
-
-	  function fallback() public {
-      contributions[msg.sender] = 1000 * (1 ether);
-      }
-
-	  function contribute() public payable {
-        require(msg.value < 0.001 ether);
-        contributions[msg.sender] += msg.value;
-		  if(contributions[msg.sender] > contributions[owner]) {
-          owner = msg.sender;
-		  }
-	  }
-
-	  function getContribution() public view returns (uint) {
-        return contributions[msg.sender];
-      }
-
 	  function withdraw() public onlyOwner {
         owner.transfer(address(this).balance);
       }
-
-	  function() payable public {
-		require(msg.value > 0 && contributions[msg.sender] > 0);
-		owner = msg.sender;
-	  }
 	}
 	
 	/**
@@ -860,10 +837,6 @@
 	  ) {
 		  price = currentPrice;
 	  }
-	  /// @notice allows the owner of this contract to destroy the contract
-	   function kill() public {
-		  if(msg.sender == owner) selfdestruct(owner);
-	   }  
 	  
 	  bytes4 private constant InterfaceId_ERC721Enumerable = 0x780e9d63;
 	  /**
