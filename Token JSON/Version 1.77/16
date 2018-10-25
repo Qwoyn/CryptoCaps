@@ -1,0 +1,23 @@
+{
+"attributes": [
+{
+"trait_type": "Power", 
+"value": "Death"
+}, 
+{
+"trait_type": "Type", 
+"value": "Poison Skull"
+},
+{
+"display_type": "number",
+"max_value": 10,
+"trait_type": "Rare",
+"value": 5
+}
+],
+"name": "Poison Skull",
+"description": "Did you know that I have a physical copy somewhere? Visit qwoyn.io to find out more.", 
+"externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/Version%201.77/16",
+"image": "https://qwoyn.io/wp-content/uploads/2018/10/qwoyn_io_poison.png", 
+"organization": "Qwoyn"
+}
