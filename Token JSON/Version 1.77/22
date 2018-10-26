@@ -1,19 +1,19 @@
 {
   "attributes": [
     {
-      "trait_type": "Chi", 
+      "trait_type": "Chi",
       "value": "Level 10"
-    }, 
+    },
 	{
 	  "display_type": "number",
       "max_value": 10,
-      "trait_type": "Rare", 
+      "trait_type": "Rare",
       "value": 2
     }
   ],
-  "name": "Ninja, Sawblade",  
-  "description": "Did you know that I have a physical copy somewhere\n visit qwoyn.io to find out more.", 
-  "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/Version%201.77/22", 
-  "image": "https://qwoyn.io/wp-content/uploads/2018/10/qwoyn_io_ninja.png", 
+  "name": "Ninja, Sawblade",
+  "description": "Did you know that I have a physical copy somewhere\n visit qwoyn.io to find out more.",
+  "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/Version%201.77/22",
+  "image": "https://qwoyn.io/wp-content/uploads/2018/10/qwoyn_io_ninja.png",
   "organization": "qwoyn.io"
 }
