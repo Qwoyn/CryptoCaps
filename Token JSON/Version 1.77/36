@@ -1,0 +1,19 @@
+{
+  "attributes": [
+    {
+      "trait_type": "Venom", 
+      "value": "Level 7"
+    }, 
+	{
+	  "display_type": "number",
+      "max_value": 10,
+      "trait_type": "Rare", 
+      "value": 6
+    }
+  ],
+  "name": "Spider Skull",  
+  "description": "Did you know that I have a physical copy somewhere\n visit qwoyn.io to find out more.", 
+  "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/Version%201.77/36", 
+  "image": "https://qwoyn.io/wp-content/uploads/2018/10/qwoyn_io_spider.png", 
+  "organization": "qwoyn.io"
+}
