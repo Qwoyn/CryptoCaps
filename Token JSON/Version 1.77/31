@@ -1,0 +1,19 @@
+{
+  "attributes": [
+    {
+      "trait_type": "Discord Champ", 
+      "value": "Level 10"
+    }, 
+	{
+	  "display_type": "number",
+      "max_value": 1,
+      "trait_type": "Rarest", 
+      "value": 1
+    }
+  ],
+  "name": "JBDoge",  
+  "description": "Thank you for your support. -Daniel Pittman, CEO Qwoyn.io", 
+  "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/Version%201.77/31", 
+  "image": "https://qwoyn.io/wp-content/uploads/2018/10/DCS1_jbdoge.png", 
+  "organization": "qwoyn.io"
+}
