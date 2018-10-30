@@ -1,0 +1,19 @@
+{
+  "attributes": [
+    {
+      "trait_type": "Haxor", 
+      "value": "Level 10"
+    }, 
+	{
+	  "display_type": "number",
+      "max_value": 50,
+      "trait_type": "Rare", 
+      "value": 1
+    }
+  ],
+  "name": "Blockchain Gaming",  
+  "description": "Thank you for your support. -Daniel Pittman, CEO Qwoyn.io", 
+  "externalUrl": "https://raw.githubusercontent.com/Qwoyn/dAppCaps/master/Token%20JSON/Version%201.77/31", 
+  "image": "https://qwoyn.io/wp-content/uploads/2018/10/qwoyn_io__bcglogo_front_DCS1-1.png", 
+  "organization": "qwoyn.io"
+}
