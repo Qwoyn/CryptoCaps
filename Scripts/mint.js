@@ -1,14 +1,14 @@
 const HDWalletProvider = require("truffle-hdwallet-provider")
 const web3 = require('web3')
-const MNEMONIC = process.env.MNEMONIC
+const PRIVATE_KEY = process.env.PRIVATE_KEY
 const INFURA_KEY = process.env.INFURA_KEY
 const NFT_CONTRACT_ADDRESS = process.env.NFT_CONTRACT_ADDRESS
 const OWNER_ADDRESS = process.env.OWNER_ADDRESS
 const NETWORK = process.env.NETWORK
-const NUM_CAPS = 50
+const NUM_CAPS = 1
 const DEFAULT_OPTION_ID = 0
 
-if (!MNEMONIC || !INFURA_KEY || !OWNER_ADDRESS || !NETWORK) {
+if (!PRIVATE_KEY || !INFURA_KEY || !OWNER_ADDRESS || !NETWORK) {
     console.error("Please set a mnemonic, infura key, owner, network, and contract address.")
     return
 }
@@ -17,7 +17,7 @@ const NFT_ABI = [{"constant":false,"inputs":[{"name":"_tokenId","type":"uint256"
 
 async function main() {
     const web3Instance = new web3(
-        new HDWalletProvider(MNEMONIC, `https://${NETWORK}.infura.io/${INFURA_KEY}`)
+        new HDWalletProvider(PRIVATE_KEY, `https://${NETWORK}.infura.io/${INFURA_KEY}`)
     )
 
     if (NFT_CONTRACT_ADDRESS) {
