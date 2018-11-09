@@ -6,7 +6,6 @@ const NFT_CONTRACT_ADDRESS = process.env.NFT_CONTRACT_ADDRESS
 const OWNER_ADDRESS = process.env.OWNER_ADDRESS
 const NETWORK = process.env.NETWORK
 const NUM_CAPS = 1
-const DEFAULT_OPTION_ID = 0
 
 if (!PRIVATE_KEY || !INFURA_KEY || !OWNER_ADDRESS || !NETWORK) {
     console.error("Please set a mnemonic, infura key, owner, network, and contract address.")
@@ -25,7 +24,6 @@ async function main() {
 
         // dAppCaps issued directly to the owner.
         for (var i = 0; i < NUM_CAPS; i++) {
-			
 			
 			var type = 1;
 			var title = "poison";
